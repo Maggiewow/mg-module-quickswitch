@@ -20,7 +20,7 @@
 <script>
 import axios from '@/libs/api.request';
 import './grids-jump.less';
-import { getSyncGridUrl } from '@/api/grids';
+// import { getSyncGridUrl } from '@/api/grids';
 
 export default {
   name: 'grids-jump',
@@ -57,17 +57,17 @@ export default {
       // console.log("handleClick", id, opentype);
 
       if (opentype === '1') {
-        getSyncGridUrl(id)
-          .then((resp) => {
-            if (resp.status == 200) {
-              window.location.href = resp.data.data;
-            } else {
-              this.$Message.info('发生错误');
-            }
-          })
-          .catch((resp) => {
-            console.log(resp);
-          });
+        // getSyncGridUrl(id)
+        //   .then((resp) => {
+        //     if (resp.status == 200) {
+        //       window.location.href = resp.data.data;
+        //     } else {
+        //       this.$Message.info('发生错误');
+        //     }
+        //   })
+        //   .catch((resp) => {
+        //     console.log(resp);
+        //   });
       } else if (opentype === '2') {
         window.location.href = open_url;
       } else if (opentype === '3') {
