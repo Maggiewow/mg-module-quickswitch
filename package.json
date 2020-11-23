@@ -1,11 +1,14 @@
 {
-  "name": "ym-sucai-modal",
-  "version": "2.0.37",
+  "name": "modules-quick-switching",
+  "version": "1.0.0",
+  "description": "模块快捷切换",
+  "author": "Maggiewow",
+  "license": "ISC",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lib": "vue-cli-service build --target lib --name ym-sucai-modal --dest lib src/components/index.js"
+    "lib": "vue-cli-service build --target lib --name modules-quick-switching --dest lib src/components/index.js"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -32,15 +35,18 @@
     "last 2 versions",
     "not dead"
   ],
-  "description": "## Project setup ``` npm install ```",
-  "main": "lib/ym-sucai-modal.common.js",
+  "main": "lib/modules-quick-switching.common.js",
   "repository": {
     "type": "git",
-    "url": "yimu0001"
+    "url": "Maggiewow/modules-quick-switching"
   },
-  "author": "yimu",
-  "license": "ISC",
   "publishConfig": {
     "registry": "http://registry.npmjs.org/"
-  }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "keywords": [
+    "modules-quick-switching"
+  ]
 }
