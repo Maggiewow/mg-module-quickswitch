@@ -1,0 +1,71 @@
+
+    .change-modal{
+      position: relative; 
+
+      .down-arrow{ 
+        cursor: pointer; 
+        margin-top: 28px;
+        margin-left: 10px;
+        width: 20px;
+        height: 14px;
+        box-sizing: border-box;
+        color: #fff;
+        border: 1px solid rgb(199, 199, 199);
+        border-radius: 10px;
+        background: url('../../assets/images/icon-up.png') no-repeat;
+        background-position: 5px 4px;
+        background-size: 8px 5px;
+      }
+      .modal-show{
+        -moz-transform:rotate(180deg); 
+        -webkit-transform:rotate(180deg);
+        transform:rotate(180deg);
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+      }
+      .modals{
+        position: absolute;
+        top: 58px;
+        left: -152px;
+        width: 240px;
+        height: auto;
+        // border: 1px solid #fff;
+        z-index: 1200;
+        background-color: #001529;
+        display: flex;
+        flex-wrap: wrap;
+
+        .per-card{
+          cursor: pointer;
+          width: 58px;
+          height: auto;
+          margin: 0 10px 6px 10px;
+
+          .imgs{
+            width: 58px;
+            height: 58px;
+            background-color: aquamarine;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img{
+              width: 46px;
+              height: 46px;
+            }
+          }
+
+          .module-name {
+            color:rgba(255, 255, 255, 0.7);
+            line-height: 17px;
+            padding: 8px 0;
+            font-size: 14px;
+            text-align: center;
+
+            
+          }
+          &:hover .module-name{
+            color:rgba(255, 255, 255, 0.9);
+          }
+        }
+      }
+    }
