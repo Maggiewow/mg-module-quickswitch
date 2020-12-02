@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-05-11 10:57:35
- * @LastEditTime: 2020-11-23 16:11:00
+ * @LastEditTime: 2020-11-24 09:18:34
  * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
  * @FilePath: \files\src\config\index.js
@@ -42,6 +42,6 @@ export default {
       developmentOff: true, // 设为true后在开发环境不会收集错误信息，方便开发中排查错误
     },
   },
-  goBackUrl: 'http://backpack.shandian.design',
-  // goBackUrl: 'http://user.shandian.design'
+  // goBackUrl: 'http://backpack.shandian.design',
+  goBackUrl: 'http://user.shandian.design',
 };

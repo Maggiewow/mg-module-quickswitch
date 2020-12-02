@@ -71,7 +71,6 @@ export default {
       } else if (opentype === '2') {
         window.location.href = open_url;
       } else if (opentype === '3') {
-        console.log('3333');
         this.$router.push({
           path: '/selfshow',
         });
