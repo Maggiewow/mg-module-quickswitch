@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Maggiewow/modules-quick-switching.git"
+    "url": "https://github.com/Maggiewow/modules-quick-switching.git"
   },
   "keywords": [
     "quickswitch"
