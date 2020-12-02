@@ -25,14 +25,14 @@
   },
   "name": "mg-module-quickswitch",
   "description": "## Project setup",
-  "version": "1.0.10",
+  "version": "1.0.0",
   "main": "lib/mg-module-quickswitch.common.js",
   "directories": {
     "lib": "lib"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Maggiewow/modules-quick-switching.git"
+    "url": "git+https://github.com/Maggiewow/mg-module-quickswitch.git"
   },
   "keywords": [
     "quickswitch"
@@ -40,7 +40,7 @@
   "author": "Maggiewow",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Maggiewow/modules-quick-switching/issues"
+    "url": "https://github.com/Maggiewow/mg-module-quickswitch/issues"
   },
-  "homepage": "https://github.com/Maggiewow/modules-quick-switching#readme"
+  "homepage": "https://github.com/Maggiewow/mg-module-quickswitch#readme"
 }
