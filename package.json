@@ -1,7 +1,4 @@
 {
-  "name": "mg-module-quickswitch",
-  "version": "1.0.9",
-  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -16,8 +13,7 @@
     "view-design": "^4.3.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0",
-    "ym-bridge-shandianyun": "^1.0.1"
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.4.0",
@@ -27,26 +23,24 @@
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ],
+  "name": "mg-module-quickswitch",
+  "description": "## Project setup",
+  "version": "1.0.10",
   "main": "lib/mg-module-quickswitch.common.js",
-  "repository": {
-    "type": "git",
-    "url": "Maggiewow"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npmjs.org/"
-  },
   "directories": {
     "lib": "lib"
   },
-  "description": "模块快捷切换",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maggiewow/modules-quick-switching.git"
+  },
+  "keywords": [
+    "quickswitch"
+  ],
   "author": "Maggiewow",
   "license": "ISC",
-  "keywords": [
-    "modules-quick-switching"
-  ]
+  "bugs": {
+    "url": "https://github.com/Maggiewow/modules-quick-switching/issues"
+  },
+  "homepage": "https://github.com/Maggiewow/modules-quick-switching#readme"
 }
