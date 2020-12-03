@@ -1,17 +1,20 @@
 /*
  * @Author: your name
  * @Date: 2020-08-12 18:18:35
- * @LastEditTime: 2020-08-13 11:15:17
- * @LastEditors: your name
+ * @LastEditTime: 2020-12-03 09:39:25
+ * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
- * @FilePath: \ym-sucai-modal\babel.config.js
+ * @FilePath:
  */
 module.exports = {
-  presets: [
-    '@vue/cli-plugin-babel/preset'
+  presets: ['@vue/cli-plugin-babel/preset'],
+  plugins: [
+    [
+      'import',
+      {
+        libraryName: 'view-design',
+        libraryDirectory: 'src/components',
+      },
+    ],
   ],
-  plugins: [["import", {
-    "libraryName": "view-design",
-    "libraryDirectory": "src/components"
-  }]]
-}
+};

@@ -25,7 +25,7 @@
   },
   "name": "mg-module-quickswitch",
   "description": "## Project setup",
-  "version": "1.0.1",
+  "version": "1.0.12",
   "main": "lib/mg-module-quickswitch.common.js",
   "directories": {
     "lib": "lib"

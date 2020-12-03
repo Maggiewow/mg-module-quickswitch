@@ -1,10 +1,10 @@
 /*
  * @Author: your name
  * @Date: 2020-08-13 10:13:33
- * @LastEditTime: 2020-11-23 16:24:38
+ * @LastEditTime: 2020-12-03 09:40:20
  * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
- * @FilePath: \ym-sucai-modal\src\components\index.js
+ * @FilePath:
  */
 import GridsJump from './grids-jump';
 GridsJump.install = function(Vue) {
