@@ -1,4 +1,7 @@
 {
+  "name": "mg-module-quickswitch",
+  "version": "1.0.13",
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -23,9 +26,12 @@
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11"
   },
-  "name": "mg-module-quickswitch",
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
   "description": "## Project setup",
-  "version": "1.0.13",
   "main": "lib/mg-module-quickswitch.common.js",
   "directories": {
     "lib": "lib"
@@ -39,6 +45,9 @@
   ],
   "author": "Maggiewow",
   "license": "ISC",
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org/"
+  },
   "bugs": {
     "url": "https://github.com/Maggiewow/mg-module-quickswitch/issues"
   },
