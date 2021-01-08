@@ -35,3 +35,8 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+npm run lib
+git 提交
+npm version patch
+npm publish
