@@ -20,7 +20,7 @@
 <script>
 import axios from '@/libs/api.request';
 import './grids-jump.less';
-// import { getSyncGridUrl } from '@/api/grids';
+import { getSyncGridUrl } from '@/api/grids';
 
 export default {
   name: 'grids-jump',
@@ -54,23 +54,27 @@ export default {
       this.modalShow = !this.modalShow;
     },
     handleClick(id, opentype, open_url) {
-      // console.log("handleClick", id, opentype);
+      console.log('handleClick', id, opentype);
 
       if (opentype === '1') {
-        // getSyncGridUrl(id)
-        //   .then((resp) => {
-        //     if (resp.status == 200) {
-        //       window.location.href = resp.data.data;
-        //     } else {
-        //       this.$Message.info('发生错误');
-        //     }
-        //   })
-        //   .catch((resp) => {
-        //     console.log(resp);
-        //   });
+        getSyncGridUrl(id)
+          .then((resp) => {
+            console.log('1跳转', resp);
+            if (resp.status == 200) {
+              console.log('resp.data.data', resp.data.data);
+              window.location.href = resp.data.data;
+            } else {
+              this.$Message.info('发生错误');
+            }
+          })
+          .catch((resp) => {
+            console.log(resp);
+          });
       } else if (opentype === '2') {
+        console.log('2跳转', open_url);
         window.location.href = open_url;
       } else if (opentype === '3') {
+        console.log('3跳转', '/selfshow');
         this.$router.push({
           path: '/selfshow',
         });

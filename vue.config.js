@@ -59,6 +59,6 @@ module.exports = {
     extract: false,
   },
   devServer: {
-    proxy: 'http://user.shandian.design/',
+    proxy: 'http://user.shandian.design',
   },
 };

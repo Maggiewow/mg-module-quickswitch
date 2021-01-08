@@ -1,6 +1,6 @@
 {
   "name": "mg-module-quickswitch",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -24,7 +24,8 @@
     "babel-plugin-import": "^1.13.0",
     "less": "^2.7.3",
     "less-loader": "^5.0.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "ym-bridge-shandianyun": "^1.0.1"
   },
   "browserslist": [
     "> 1%",
