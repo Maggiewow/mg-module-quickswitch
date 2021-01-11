@@ -4,7 +4,7 @@
     <div class="modals" v-show="modalShow">
       <div
         class="per-card"
-        v-for="({ id, icon, name, opentype, open_url }, index) in gridsInfo"
+        v-for="({ id, icon, name, opentype, open_url }, index) in gridsList"
         :key="id"
         @click="handleClick(id, opentype, open_url)"
       >
@@ -20,18 +20,25 @@
 <script>
 import axios from '@/libs/api.request';
 import './grids-jump.less';
-import { getSyncGridUrl } from '@/api/grids';
+import { getGridsList, getSyncGridUrl } from '@/api/grids';
 
 export default {
   name: 'grids-jump',
   props: {
-    gridsInfo: {
-      type: Array,
-      default: [],
+    env: {
+      type: String,
+      default: 'dev', // dev | test | prod
     },
   },
   data() {
     return {
+      baseUrlObj: {
+        dev: '',
+        test: 'http://user.shandian.design',
+        prod: 'https://shandianyun-extraction.iqilu.com',
+      },
+      baseUrl: '',
+      gridsList: [],
       modalShow: false,
       gridsColorInfo: ['#6b77fa', '#bb75f2', '#0edabb', '#ff818f', '#6dd384', '#05a4f9', '#945eff'],
     };
@@ -49,7 +56,40 @@ export default {
   //     this.modalShow = val;
   //   }
   // },
+  watch: {
+    env: {
+      handler(val) {
+        this.baseUrl = this.baseUrlObj[val];
+      },
+      immediate: true,
+    },
+  },
+  mounted() {
+    this.baseUrl = this.baseUrlObj[this.env] || '';
+    console.log('当前接口请求地址', this.baseUrl);
+    this.getAllList();
+  },
   methods: {
+    getAllList() {
+      getGridsList(this.baseUrl).then((res) => {
+        console.log('九宫格列表', res.data.data);
+        if (res.status === 200) {
+          let list = res.data.data || [];
+          this.gridsList = list
+            .filter(({ is_pc_nav }) => is_pc_nav === '1')
+            .sort((a, b) => a.pc_weight - b.pc_weight)
+            .map(({ id, icon, name, opentype, open_url }) => ({
+              id,
+              icon,
+              name,
+              opentype,
+              open_url,
+            }));
+        } else {
+          this.$Message.error('九宫格列表获取失败');
+        }
+      });
+    },
     handleArrowClick() {
       this.modalShow = !this.modalShow;
     },
@@ -57,7 +97,7 @@ export default {
       console.log('handleClick', id, opentype);
 
       if (opentype === '1') {
-        getSyncGridUrl(id)
+        getSyncGridUrl(id, this.baseUrl)
           .then((resp) => {
             console.log('1跳转', resp);
             if (resp.status == 200) {
