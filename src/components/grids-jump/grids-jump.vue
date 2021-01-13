@@ -35,7 +35,7 @@ export default {
       baseUrlObj: {
         dev: '',
         test: 'http://user.shandian.design',
-        prod: 'https://shandianyun-extraction.iqilu.com',
+        prod: 'https://shandianyun.iqilu.com',
       },
       baseUrl: '',
       gridsList: [],
