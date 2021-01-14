@@ -118,6 +118,21 @@ export default {
         this.$router.push({
           path: '/selfshow',
         });
+      } else if (opentype === '4') {
+        getSyncGridUrl(id, this.baseUrl)
+          .then((resp) => {
+            console.log('4跳转', resp);
+            if (resp.status == 200) {
+              console.log('resp.data.data', resp.data.data);
+              // window.location.href = resp.data.data;
+              window.open(resp.data.data, '_blank');
+            } else {
+              this.$Message.info('发生错误');
+            }
+          })
+          .catch((resp) => {
+            console.log(resp);
+          });
       }
     },
   },
