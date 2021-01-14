@@ -1,6 +1,10 @@
 <template>
   <div class="change-modal">
-    <p :class="['down-arrow', modalShow ? 'modal-show' : '']" @click="handleArrowClick"></p>
+    <!-- @click="handleArrowClick" -->
+    <!-- @mouseover="mouseOver"
+      @mouseleave="mouseLeave" -->
+    <div :class="['down-arrow', modalShow ? 'modal-show' : '']" @click="handleArrowClick"></div>
+    <!-- v-show="modalShow" -->
     <div class="modals" v-show="modalShow">
       <div
         class="per-card"
@@ -92,6 +96,12 @@ export default {
     },
     handleArrowClick() {
       this.modalShow = !this.modalShow;
+    },
+    mouseOver() {
+      this.modalShow = true;
+    },
+    mouseLeave() {
+      this.modalShow = false;
     },
     handleClick(id, opentype, open_url) {
       console.log('handleClick', id, opentype);
