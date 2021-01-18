@@ -1,11 +1,7 @@
 <template>
-  <div class="change-modal">
-    <!-- @click="handleArrowClick" -->
-    <!-- @mouseover="mouseOver"
-      @mouseleave="mouseLeave" -->
-    <div :class="['down-arrow', modalShow ? 'modal-show' : '']" @click="handleArrowClick"></div>
-    <!-- v-show="modalShow" -->
-    <div class="modals" v-show="modalShow">
+  <div class="change-modal" @mouseover="mouseOver" @mouseleave="mouseLeave">
+    <div class="down-arrow"></div>
+    <div class="modals elementToFadeInAndOut" v-show="modalShow">
       <div
         class="per-card"
         v-for="({ id, icon, name, opentype, open_url }, index) in gridsList"
@@ -25,6 +21,7 @@
 import axios from '@/libs/api.request';
 import './grids-jump.less';
 import { getGridsList, getSyncGridUrl } from '@/api/grids';
+// import { mockGridsInfo } from '@/libs/constant';
 
 export default {
   name: 'grids-jump',
@@ -47,19 +44,6 @@ export default {
       gridsColorInfo: ['#6b77fa', '#bb75f2', '#0edabb', '#ff818f', '#6dd384', '#05a4f9', '#945eff'],
     };
   },
-
-  //利用计算属性 监听store
-  // computed: {
-  //   showCover() {
-  //     return this.$store.state.showCover;
-  //   }
-  // },
-  // //监听执行
-  // watch: {
-  //   showCover(val) {
-  //     this.modalShow = val;
-  //   }
-  // },
   watch: {
     env: {
       handler(val) {
@@ -101,7 +85,9 @@ export default {
       this.modalShow = true;
     },
     mouseLeave() {
-      this.modalShow = false;
+      setTimeout(() => {
+        this.modalShow = false;
+      }, 400);
     },
     handleClick(id, opentype, open_url) {
       console.log('handleClick', id, opentype);
