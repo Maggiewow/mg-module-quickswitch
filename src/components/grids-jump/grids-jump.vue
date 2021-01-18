@@ -1,5 +1,5 @@
 <template>
-  <div class="change-modal" @mouseover="mouseOver" @mouseleave="mouseLeave">
+  <div class="change-modal" @mouseover="dbShow" @mouseleave="mouseLeave">
     <div class="down-arrow"></div>
     <div class="modals elementToFadeInAndOut" v-show="modalShow">
       <div
@@ -22,6 +22,7 @@ import axios from '@/libs/api.request';
 import './grids-jump.less';
 import { getGridsList, getSyncGridUrl } from '@/api/grids';
 // import { mockGridsInfo } from '@/libs/constant';
+import { debounce } from 'lodash';
 
 export default {
   name: 'grids-jump',
@@ -42,6 +43,7 @@ export default {
       gridsList: [],
       modalShow: false,
       gridsColorInfo: ['#6b77fa', '#bb75f2', '#0edabb', '#ff818f', '#6dd384', '#05a4f9', '#945eff'],
+      dbShow: null,
     };
   },
   watch: {
@@ -53,6 +55,8 @@ export default {
     },
   },
   mounted() {
+    this.dbShow = debounce(this.mouseOver, 300, false);
+
     this.baseUrl = this.baseUrlObj[this.env] || '';
     console.log('当前接口请求地址', this.baseUrl);
     this.getAllList();
