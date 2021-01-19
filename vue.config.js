@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-24 09:12:36
- * @LastEditTime: 2020-11-24 09:21:13
+ * @LastEditTime: 2021-01-18 15:51:21
  * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
  * @FilePath: \sucai-modal\vue.config.js
@@ -59,6 +59,7 @@ module.exports = {
     extract: false,
   },
   devServer: {
-    proxy: 'http://user.shandian.design',
+    // proxy: 'http://user.shandian.design',
+    proxy: 'https://shandianyun.iqilu.com',
   },
 };

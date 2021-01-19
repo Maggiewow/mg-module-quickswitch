@@ -43,7 +43,7 @@ export default {
       gridsList: [],
       modalShow: false,
       gridsColorInfo: ['#6b77fa', '#bb75f2', '#0edabb', '#ff818f', '#6dd384', '#05a4f9', '#945eff'],
-      dbShow: null,
+      dbShow: {},
     };
   },
   watch: {
@@ -55,11 +55,12 @@ export default {
     },
   },
   mounted() {
-    this.dbShow = debounce(this.mouseOver, 300, false);
-
     this.baseUrl = this.baseUrlObj[this.env] || '';
     console.log('当前接口请求地址', this.baseUrl);
     this.getAllList();
+    this.$nextTick(() => {
+      this.dbShow = debounce(this.mouseOver, 300, false);
+    });
   },
   methods: {
     getAllList() {
