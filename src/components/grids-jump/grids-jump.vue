@@ -55,12 +55,10 @@ export default {
     },
   },
   mounted() {
+    this.dbShow = debounce(this.mouseOver, 300, false);
     this.baseUrl = this.baseUrlObj[this.env] || '';
     console.log('当前接口请求地址', this.baseUrl);
     this.getAllList();
-    this.$nextTick(() => {
-      this.dbShow = debounce(this.mouseOver, 300, false);
-    });
   },
   methods: {
     getAllList() {
