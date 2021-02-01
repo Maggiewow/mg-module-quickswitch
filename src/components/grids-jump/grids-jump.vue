@@ -40,7 +40,7 @@ export default {
     // 折叠
     collapsed: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     env: {
       type: String,
