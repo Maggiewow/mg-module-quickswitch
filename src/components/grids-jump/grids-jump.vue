@@ -2,11 +2,9 @@
   <div class="change-modal" @mouseover="dbShow" @mouseleave="mouseLeave">
     <!-- <div class="down-arrow"></div> -->
 
-    <div class="logo-con" @click.self="backLogin">
-      <template v-show="!collapsed">
-        <img class="logo-img" src="../../assets/images/logo.jpg" key="max-logo" />
-        <div class="down-arrow"></div>
-      </template>
+    <div class="logo-con" @click="backLogin">
+      <img v-show="!collapsed" class="logo-img" src="../../assets/images/logo.jpg" key="max-logo" />
+      <div v-show="!collapsed" class="down-arrow"></div>
       <img
         v-show="collapsed"
         class="logo-img"
@@ -34,6 +32,7 @@
 <script>
 import './grids-jump.less';
 import { getGridsList, getSyncGridUrl } from '@/api/grids';
+import { debounce } from 'lodash';
 
 export default {
   name: 'grids-jump',
@@ -41,7 +40,7 @@ export default {
     // 折叠
     collapsed: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     env: {
       type: String,
@@ -59,6 +58,7 @@ export default {
       gridsList: [],
       modalShow: false,
       gridsColorInfo: ['#6b77fa', '#bb75f2', '#0edabb', '#ff818f', '#6dd384', '#05a4f9', '#945eff'],
+      dbShow: {},
     };
   },
   watch: {
@@ -70,6 +70,7 @@ export default {
     },
   },
   mounted() {
+    this.dbShow = debounce(this.mouseOver, 300, false);
     this.baseUrl = this.baseUrlObj[this.env] || '';
     console.log('当前接口请求地址', this.baseUrl);
     this.getAllList();
@@ -99,14 +100,19 @@ export default {
       this.modalShow = !this.modalShow;
     },
     mouseOver() {
+      if (this.collapsed) return;
+
       this.modalShow = true;
     },
     mouseLeave() {
+      if (this.collapsed) return;
+
       setTimeout(() => {
         this.modalShow = false;
       }, 400);
     },
     backLogin() {
+      console.log('返回首页');
       this.$emit('back-login');
     },
     handleClick(id, opentype, open_url) {
