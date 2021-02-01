@@ -1,6 +1,18 @@
 <template>
   <div class="change-modal" @mouseover="dbShow" @mouseleave="mouseLeave">
-    <div class="down-arrow"></div>
+    <!-- <div class="down-arrow"></div> -->
+
+    <div class="logo-con" @click="backLogin">
+      <img v-show="!collapsed" class="logo-img" src="../../assets/images/logo.jpg" key="max-logo" />
+      <div v-show="!collapsed" class="down-arrow"></div>
+      <img
+        v-show="collapsed"
+        class="logo-img"
+        src="../../assets/images/logo-min.jpg"
+        key="min-logo"
+      />
+    </div>
+
     <div class="modals elementToFadeInAndOut" v-show="modalShow">
       <div
         class="per-card"
@@ -18,15 +30,18 @@
 </template>
 
 <script>
-import axios from '@/libs/api.request';
 import './grids-jump.less';
 import { getGridsList, getSyncGridUrl } from '@/api/grids';
-// import { mockGridsInfo } from '@/libs/constant';
 import { debounce } from 'lodash';
 
 export default {
   name: 'grids-jump',
   props: {
+    // 折叠
+    collapsed: {
+      type: Boolean,
+      default: false,
+    },
     env: {
       type: String,
       default: 'dev', // dev | test | prod
@@ -85,12 +100,20 @@ export default {
       this.modalShow = !this.modalShow;
     },
     mouseOver() {
+      if (this.collapsed) return;
+
       this.modalShow = true;
     },
     mouseLeave() {
+      if (this.collapsed) return;
+
       setTimeout(() => {
         this.modalShow = false;
       }, 400);
+    },
+    backLogin() {
+      console.log('返回首页');
+      this.$emit('back-login');
     },
     handleClick(id, opentype, open_url) {
       console.log('handleClick', id, opentype);
