@@ -3,11 +3,11 @@
     <!-- <div class="down-arrow"></div> -->
 
     <div class="logo-con" @click="goBackLogin">
-      <img v-show="!collapsed" class="logo-img" src="../../assets/images/logo.jpg" key="max-logo" />
+      <img v-show="!collapsed" class="logo-img" src="../../assets/images/logo.png" key="max-logo" />
       <div v-show="!collapsed" class="down-arrow"></div>
       <img
         v-show="collapsed"
-        class="logo-img"
+        class="logo-img min-pic"
         src="../../assets/images/logo-min.jpg"
         key="min-logo"
       />
