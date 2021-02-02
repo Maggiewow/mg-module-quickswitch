@@ -2,7 +2,7 @@
   <div class="change-modal" @mouseover="dbShow" @mouseleave="mouseLeave">
     <!-- <div class="down-arrow"></div> -->
 
-    <div class="logo-con" @click="backLogin">
+    <div class="logo-con" @click="goBackLogin">
       <img v-show="!collapsed" class="logo-img" src="../../assets/images/logo.jpg" key="max-logo" />
       <div v-show="!collapsed" class="down-arrow"></div>
       <img
@@ -111,9 +111,8 @@ export default {
         this.modalShow = false;
       }, 400);
     },
-    backLogin() {
-      console.log('返回首页');
-      this.$emit('back-login');
+    goBackLogin() {
+      this.$emit('on-back');
     },
     handleClick(id, opentype, open_url) {
       console.log('handleClick', id, opentype);

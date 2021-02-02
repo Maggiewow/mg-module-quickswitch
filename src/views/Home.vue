@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-23 09:48:43
- * @LastEditTime: 2021-02-01 14:39:43
+ * @LastEditTime: 2021-02-02 09:34:07
  * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
  * @FilePath: \sucai-modal\src\views\Home.vue
 -->
 <template>
   <div class="home comp-grids">
-    <grids-jump evn="dev"></grids-jump>
+    <grids-jump :collapsed="collapsed" @on-back="backLogin" evn="dev"></grids-jump>
   </div>
 </template>
 
@@ -22,10 +22,14 @@ export default {
     GridsJump,
   },
   data() {
-    return {};
+    return { collapsed: false };
   },
   mounted() {},
-  methods: {},
+  methods: {
+    backLogin() {
+      console.log('home页面--返回首页');
+    },
+  },
 };
 </script>
 
