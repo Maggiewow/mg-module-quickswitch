@@ -3,12 +3,18 @@
     <!-- <div class="down-arrow"></div> -->
 
     <div class="logo-con" @click="goBackLogin">
-      <img v-show="!collapsed" class="logo-img" src="../../assets/images/logo.png" key="max-logo" />
+      <!-- <img v-show="!collapsed" class="logo-img" src="@/assets/images/logo.png" key="max-logo" /> -->
+      <img
+        v-show="!collapsed"
+        class="logo-img"
+        src="https://img12.iqilu.com/1/sucaiku/202102/03/db0b775182fb49f2af1557126470b0ce.png"
+        key="max-logo"
+      />
       <div v-show="!collapsed" class="down-arrow"></div>
       <img
         v-show="collapsed"
         class="logo-img min-pic"
-        src="../../assets/images/logo-min.jpg"
+        src="@/assets/images/logo-min.jpg"
         key="min-logo"
       />
     </div>

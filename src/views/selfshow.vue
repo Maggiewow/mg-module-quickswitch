@@ -3,7 +3,7 @@
     <div class="header">
       <div class="homeButton" @click="goHome">
         <a>
-          <img src="../assets/images/home-a@2x.png" alt="" />
+          <img src="@/assets/images/home-a@2x.png" alt="" />
           <span>返回首页</span>
         </a>
       </div>
@@ -13,7 +13,7 @@
         <li>
           <div>
             <a href="https://www.mugeda.com/" target="_blank">
-              <img src="../assets/images/mugeda@2x.png" alt />
+              <img src="@/assets/images/mugeda@2x.png" alt />
               <p>木疙瘩</p>
             </a>
           </div>
@@ -21,7 +21,7 @@
         <li>
           <div>
             <a href="http://www.eqxiu.com/" target="_blank">
-              <img src="../assets/images/yiqixiu@2x.png" alt />
+              <img src="@/assets/images/yiqixiu@2x.png" alt />
               <p>易企秀</p>
             </a>
           </div>
@@ -29,7 +29,7 @@
         <li>
           <div>
             <a href="https://www.rabbitpre.com/" target="_blank">
-              <img src="../assets/images/tuzhan@2x.png" alt />
+              <img src="@/assets/images/tuzhan@2x.png" alt />
               <p>兔展</p>
             </a>
           </div>
@@ -39,7 +39,7 @@
         <li>
           <div>
             <a href="http://www.ih5.cn" target="_blank">
-              <img src="../assets/images/ih5@2x.png" alt />
+              <img src="@/assets/images/ih5@2x.png" alt />
               <p>iH5</p>
             </a>
           </div>
@@ -47,7 +47,7 @@
         <li>
           <div>
             <a href="https://cd.fkw.com/template.html" target="_blank">
-              <img src="../assets/images/fanke@2x.png" alt />
+              <img src="@/assets/images/fanke@2x.png" alt />
               <p>凡科微传单</p>
             </a>
           </div>
@@ -55,7 +55,7 @@
         <li>
           <div>
             <a href="https://720yun.com/" target="_blank">
-              <img src="../assets/images/720yun@2x.png" alt />
+              <img src="@/assets/images/720yun@2x.png" alt />
               <p>720云</p>
             </a>
           </div>
