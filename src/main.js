@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-23 09:48:43
- * @LastEditTime: 2021-01-08 14:17:57
+ * @LastEditTime: 2021-02-19 09:32:07
  * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
  * @FilePath: \sucai-modal\src\main.js
@@ -13,9 +13,9 @@ import router from './router';
 import store from './store';
 import config from '@/config';
 
-import ViewUI, { Message } from 'view-design';
+import { Message } from 'view-design';
 import 'view-design/dist/styles/iview.css';
-Vue.use(ViewUI);
+// Vue.use(ViewUI);
 
 Vue.config.productionTip = false;
 Vue.prototype.$config = config;

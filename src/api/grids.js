@@ -11,7 +11,7 @@ import Cookies from 'js-cookie';
 import gridsAxios from 'ym-bridge-shandianyun';
 
 // let basePath = 'https://shandianyun-extraction.iqilu.com';
-// let basePath = 'http://user.shandian.design';
+// let basePath = 'http://user.shandian8.com';
 // let basePath = '';
 
 console.log('gridsAxios', gridsAxios);

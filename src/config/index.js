@@ -43,5 +43,5 @@ export default {
     },
   },
   // goBackUrl: 'http://backpack.shandian.design',
-  goBackUrl: 'http://user.shandian.design',
+  goBackUrl: 'http://user.shandian8.com',
 };

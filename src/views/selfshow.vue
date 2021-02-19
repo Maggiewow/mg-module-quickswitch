@@ -81,7 +81,8 @@ export default {
 .hello {
   text-align: center;
   position: absolute;
-  background-image: url('../assets/images/bg.png');
+  background-image: url('https://img12.iqilu.com/1/sucaiku/202102/19/e50e3d4021334d01ac3b3b3f3c405c65.png');
+  /* background-image: url('../assets/images/bg.png'); */
   width: 100%;
   height: 100%;
 }
