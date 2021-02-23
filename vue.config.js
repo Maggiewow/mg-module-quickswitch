@@ -63,7 +63,7 @@ module.exports = {
     extract: false,
   },
   devServer: {
-    // proxy: 'http://user.shandian8.com',
+    // proxy: 'https://user.shandian8.com',
     proxy: 'https://shandianyun.iqilu.com',
   },
 };

@@ -57,7 +57,7 @@ export default {
     return {
       baseUrlObj: {
         dev: '',
-        test: 'http://user.shandian8.com',
+        test: 'https://user.shandian8.com',
         prod: 'https://shandianyun.iqilu.com',
       },
       baseUrl: '',
