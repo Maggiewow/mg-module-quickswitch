@@ -76,7 +76,10 @@ export default {
     },
   },
   mounted() {
-    this.dbShow = debounce(this.mouseOver, 300, false);
+    this.dbShow = debounce(this.mouseOver, 300, {
+      leading: false, // 指定在延迟开始前调用
+      trailing: true, // 指定在延迟结束后调用
+    });
     this.baseUrl = this.baseUrlObj[this.env] || '';
     console.log('当前接口请求地址', this.baseUrl);
     this.getAllList();
@@ -113,9 +116,7 @@ export default {
     mouseLeave() {
       if (this.collapsed) return;
 
-      setTimeout(() => {
-        this.modalShow = false;
-      }, 400);
+      this.modalShow = false;
     },
     goBackLogin() {
       this.$emit('on-back');
