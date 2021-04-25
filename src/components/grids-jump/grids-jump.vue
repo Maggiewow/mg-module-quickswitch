@@ -1,11 +1,31 @@
 <template>
-  <div class="change-modal" @mouseover="dbShow" @mouseleave="mouseLeave">
+  <div
+    :class="['change-modal', isLight ? 'light-wrap' : '']"
+    @mouseover="dbShow"
+    @mouseleave="mouseLeave"
+  >
     <!-- <div class="down-arrow"></div> -->
 
     <div class="logo-con" @click="goBackLogin">
       <!-- <img v-show="!collapsed" class="logo-img" src="@/assets/images/logo.png" key="max-logo" /> -->
-      <img v-show="!collapsed" class="logo-img" :src="logoSrc" key="max-logo" />
-      <div v-show="!collapsed" class="down-arrow"></div>
+      <template v-if="isLight">
+        <img
+          v-show="!collapsed"
+          class="light-logo"
+          src="https://img12.iqilu.com/1/sucaiku/202104/25/ee017c1fe86344d3a32ecc03bfd00f9a.png"
+          key="max-logo"
+        />
+        <div v-show="!collapsed" class="light-arrow"></div>
+      </template>
+      <template v-else>
+        <img
+          v-show="!collapsed"
+          class="logo-img"
+          src="https://img12.iqilu.com/1/sucaiku/202102/03/db0b775182fb49f2af1557126470b0ce.png"
+          key="max-logo"
+        />
+        <div v-show="!collapsed" class="down-arrow"></div>
+      </template>
       <img
         v-show="collapsed"
         class="logo-img min-pic"
@@ -14,7 +34,11 @@
       />
     </div>
 
-    <div class="modals elementToFadeInAndOut" v-show="modalShow">
+    <!-- 浅色主题：light-modals -->
+    <div
+      :class="['modals', 'elementToFadeInAndOut', isLight ? 'light-modals' : '']"
+      v-show="modalShow"
+    >
       <!-- <div
         class="per-card"
         v-for="({ id, icon, name, opentype, open_url }, index) in gridsList"
@@ -111,6 +135,7 @@ export default {
       leftArea: [],
       centerArea: [],
       commonArea: [],
+      isLight: false,
     };
   },
   watch: {
@@ -129,6 +154,8 @@ export default {
           this.logoSrc =
             'https://img12.iqilu.com/1/sucaiku/202102/03/db0b775182fb49f2af1557126470b0ce.png';
         }
+
+        this.isLight = str === 'light';
       },
       immediate: true,
     },
