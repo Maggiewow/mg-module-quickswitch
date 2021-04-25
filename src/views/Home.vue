@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-23 09:48:43
- * @LastEditTime: 2021-02-02 17:08:24
+ * @LastEditTime: 2021-04-25 09:40:51
  * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
  * @FilePath: \sucai-modal\src\views\Home.vue
@@ -38,6 +38,7 @@ export default {
 
 .comp-grids {
   background-color: #001529;
+  /* background-color: #fff; */
   width: 257px;
   min-height: 64px;
   display: flex;
