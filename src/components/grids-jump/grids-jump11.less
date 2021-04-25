@@ -14,18 +14,14 @@
     align-items: flex-end;
     line-height: 62px;
     font-size: 18px;
+    color: #333;
     text-align: left;
 
     .logo-img {
-      height: 44px;
+      // height: 44px;
+      height: 34px;
       width: auto;
       display: block;
-    }
-    .light-logo{
-      height: 30px;
-      width: auto;
-      display: block;
-
     }
     .min-pic{
      margin-left: -78px;
@@ -36,20 +32,12 @@
       width: 20px;
       height: 14px;
       box-sizing: border-box;
+      color: #333;
       border: 1px solid rgb(199, 199, 199);
       border-radius: 10px;
       background: url('../../assets/images/icon-up.png') no-repeat;
       background-position: 5px 4px;
       background-size: 8px 5px;
-    }
-    .light-arrow{
-      margin: 3px 8px;
-      width: 15px;
-      height: 14px;
-      box-sizing: border-box;
-      background: url('../../assets/images/icon-up2.png') no-repeat;
-      background-position: 0px 4px;
-      background-size: 15px 8px;
     }
   }
 
@@ -68,7 +56,9 @@
     height: auto;
     padding: 10px;
     z-index: 1200;
-    background-color: #000E1B;
+    // background-color: #000E1B;
+    background-color: #fff;
+    box-shadow: 0 0 8px 2px rgb(231, 229, 229);
 
     .partItem{
       margin: 5px 0;;
@@ -78,7 +68,7 @@
       line-height: 34px;
       font-size: 16px;
       font-weight: bold;
-      color: #fff;
+      color:rgba(26, 26, 26, 0.9);
       text-align: left;
     }
     .card-list{
@@ -111,7 +101,7 @@
         }
 
         .module-name {
-          color:rgba(255, 255, 255, 0.7);
+          color:rgba(26, 26, 26, 0.7);
           line-height: 18px;
           font-size: 14px;
           text-align: center;
@@ -119,14 +109,13 @@
           
         }
         &:hover .module-name{
-          color:rgba(255, 255, 255, 0.9);
+          color:rgba(26, 26, 26, 0.9);
         }
       }
     }
   }
   
-  .light-modals{
-    left: -40px;
+  .lightModals{
     background-color: #fff;
     box-shadow: 0 0 8px 2px rgb(231, 229, 229);
 
@@ -142,17 +131,11 @@
       }
     }
   }
-  .dark-modals{}
-}
-
-.light-wrap{
-  width: 170px;
 }
 
 .change-modal .elementToFadeInAndOut {
-  display: none;
-  // -webkit-animation: fadout 0.3s linear forwards;
-  // animation: fadout 0.3s linear forwards;
+  -webkit-animation: fadout 0.3s linear forwards;
+  animation: fadout 0.3s linear forwards;
 }
 
 @-webkit-keyframes fadout {
@@ -173,17 +156,15 @@
   }
 }
 .change-modal:hover {
-  .down-arrow,
-  .light-arrow{
+  .down-arrow{
     -moz-transform:rotate(180deg); 
     -webkit-transform:rotate(180deg);
     transform:rotate(180deg);
     filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
   }
   .elementToFadeInAndOut {
-    display: flex;
-    // -webkit-animation: fadein 0.3s linear forwards;
-    // animation: fadein 0.3s linear forwards;
+    -webkit-animation: fadein 0.3s linear forwards;
+    animation: fadein 0.3s linear forwards;
   }
 }
 

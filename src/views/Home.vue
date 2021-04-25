@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2020-07-23 09:48:43
- * @LastEditTime: 2021-02-02 17:08:24
+ * @LastEditTime: 2021-04-25 15:03:14
  * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
  * @FilePath: \sucai-modal\src\views\Home.vue
 -->
 <template>
   <div class="home comp-grids">
-    <grids-jump :collapsed="collapsed" @on-back="backLogin" evn="dev"></grids-jump>
+    <grids-jump :collapsed="collapsed" theme="light" @on-back="backLogin" evn="dev"></grids-jump>
   </div>
 </template>
 
@@ -37,7 +37,8 @@ export default {
 @import url('../assets/css/common.css');
 
 .comp-grids {
-  background-color: #001529;
+  /* background-color: #001529; */
+  background-color: #fff;
   width: 257px;
   min-height: 64px;
   display: flex;

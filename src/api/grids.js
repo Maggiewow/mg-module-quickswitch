@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-10-26 14:56:23
- * @LastEditTime: 2021-01-11 09:37:59
+ * @LastEditTime: 2021-04-25 10:27:05
  * @LastEditors: 赵婷婷
  * @Description: In User Settings Edit
  * @FilePath: \manuscript-pc\src\api\common.js
@@ -27,6 +27,14 @@ export const getGridsList = (basePath) => {
 export const getSyncGridUrl = (id, basePath) => {
   return gridsAxios.request({
     url: basePath + '/sync?id=' + id,
+    method: 'get',
+  });
+};
+
+//获取模块
+export const getModules = (basePath) => {
+  return gridsAxios.request({
+    url: basePath + '/user/get-module',
     method: 'get',
   });
 };

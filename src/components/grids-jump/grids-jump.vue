@@ -1,16 +1,31 @@
 <template>
-  <div class="change-modal" @mouseover="dbShow" @mouseleave="mouseLeave">
+  <div
+    :class="['change-modal', isLight ? 'light-wrap' : '']"
+    @mouseover="dbShow"
+    @mouseleave="mouseLeave"
+  >
     <!-- <div class="down-arrow"></div> -->
 
     <div class="logo-con" @click="goBackLogin">
       <!-- <img v-show="!collapsed" class="logo-img" src="@/assets/images/logo.png" key="max-logo" /> -->
-      <img
-        v-show="!collapsed"
-        class="logo-img"
-        src="https://img12.iqilu.com/1/sucaiku/202102/03/db0b775182fb49f2af1557126470b0ce.png"
-        key="max-logo"
-      />
-      <div v-show="!collapsed" class="down-arrow"></div>
+      <template v-if="isLight">
+        <img
+          v-show="!collapsed"
+          class="light-logo"
+          src="https://img12.iqilu.com/1/sucaiku/202104/25/ee017c1fe86344d3a32ecc03bfd00f9a.png"
+          key="max-logo"
+        />
+        <div v-show="!collapsed" class="light-arrow"></div>
+      </template>
+      <template v-else>
+        <img
+          v-show="!collapsed"
+          class="logo-img"
+          src="https://img12.iqilu.com/1/sucaiku/202102/03/db0b775182fb49f2af1557126470b0ce.png"
+          key="max-logo"
+        />
+        <div v-show="!collapsed" class="down-arrow"></div>
+      </template>
       <img
         v-show="collapsed"
         class="logo-img min-pic"
@@ -19,8 +34,12 @@
       />
     </div>
 
-    <div class="modals elementToFadeInAndOut" v-show="modalShow">
-      <div
+    <!-- 浅色主题：light-modals -->
+    <div
+      :class="['modals', 'elementToFadeInAndOut', isLight ? 'light-modals' : '']"
+      v-show="modalShow"
+    >
+      <!-- <div
         class="per-card"
         v-for="({ id, icon, name, opentype, open_url }, index) in gridsList"
         :key="id"
@@ -30,6 +49,49 @@
           <img :src="icon" :alt="name" />
         </div>
         <p class="module-name">{{ name }}</p>
+      </div> -->
+
+      <div v-for="item of leftArea" :key="item.id" class="partItem">
+        <h2 class="col-title over_hide" :title="item.name">{{ item.name }}</h2>
+        <div class="card-list">
+          <div
+            class="per-card"
+            v-for="{ id, color_ico, name, opentype, open_url } in item.modules"
+            :key="id"
+            @click="handleClick(id, opentype, open_url)"
+          >
+            <img class="module-icon" :src="color_ico" :alt="name" />
+            <p class="module-name">{{ name }}</p>
+          </div>
+        </div>
+      </div>
+      <div v-for="item of centerArea" :key="item.id" class="partItem">
+        <h2 class="col-title over_hide" :title="item.name">{{ item.name }}</h2>
+        <div class="card-list">
+          <div
+            class="per-card"
+            v-for="{ id, color_ico, name, opentype, open_url } in item.modules"
+            :key="id"
+            @click="handleClick(id, opentype, open_url)"
+          >
+            <img class="module-icon" :src="color_ico" :alt="name" />
+            <p class="module-name">{{ name }}</p>
+          </div>
+        </div>
+      </div>
+      <div v-for="item of commonArea" :key="item.id" class="partItem">
+        <h2 class="col-title over_hide" :title="item.name">{{ item.name }}</h2>
+        <div class="card-list">
+          <div
+            class="per-card"
+            v-for="{ id, color_ico, name, opentype, open_url } in item.modules"
+            :key="id"
+            @click="handleClick(id, opentype, open_url)"
+          >
+            <img class="module-icon" :src="color_ico" :alt="name" />
+            <p class="module-name">{{ name }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -37,7 +99,7 @@
 
 <script>
 import './grids-jump.less';
-import { getGridsList, getSyncGridUrl } from '@/api/grids';
+import { getModules, getSyncGridUrl } from '@/api/grids';
 import { debounce } from 'lodash';
 
 export default {
@@ -50,7 +112,11 @@ export default {
     },
     env: {
       type: String,
-      default: 'dev', // dev | test | prod
+      default: 'test', // dev | test | prod
+    },
+    theme: {
+      type: String,
+      default: 'dark', // light dark
     },
   },
   data() {
@@ -65,12 +131,31 @@ export default {
       modalShow: false,
       gridsColorInfo: ['#6b77fa', '#bb75f2', '#0edabb', '#ff818f', '#6dd384', '#05a4f9', '#945eff'],
       dbShow: {},
+      logoSrc: '',
+      leftArea: [],
+      centerArea: [],
+      commonArea: [],
+      isLight: false,
     };
   },
   watch: {
     env: {
       handler(val) {
         this.baseUrl = this.baseUrlObj[val];
+      },
+      immediate: true,
+    },
+    theme: {
+      handler(str = 'dark') {
+        if (str === 'light') {
+          this.logoSrc =
+            'https://img12.iqilu.com/1/sucaiku/202104/25/ee017c1fe86344d3a32ecc03bfd00f9a.png';
+        } else if (str === 'dark') {
+          this.logoSrc =
+            'https://img12.iqilu.com/1/sucaiku/202102/03/db0b775182fb49f2af1557126470b0ce.png';
+        }
+
+        this.isLight = str === 'light';
       },
       immediate: true,
     },
@@ -85,21 +170,63 @@ export default {
     this.getAllList();
   },
   methods: {
+    // getAllList1() {
+    //   getGridsList(this.baseUrl).then((res) => {
+    //     console.log('九宫格列表', res.data.data);
+    //     if (res.status === 200) {
+    //       let list = res.data.data || [];
+    //       this.gridsList = list
+    //         .filter(({ is_pc_nav }) => is_pc_nav === '1')
+    //         .sort((a, b) => a.pc_weight - b.pc_weight)
+    //         .map(({ id, icon, name, opentype, open_url }) => ({
+    //           id,
+    //           icon,
+    //           name,
+    //           opentype,
+    //           open_url,
+    //         }));
+    //     } else {
+    //       this.$Message.error('九宫格列表获取失败');
+    //     }
+    //   });
+    // },
+    simplifyArray(list) {
+      const simple = (data) =>
+        data.map(({ id, type, color_ico, name, opentype, open_url }) => ({
+          id,
+          type,
+          color_ico,
+          name,
+          opentype,
+          open_url,
+        }));
+
+      return simple(list);
+    },
     getAllList() {
-      getGridsList(this.baseUrl).then((res) => {
-        console.log('九宫格列表', res.data.data);
+      this.leftArea = [];
+      this.centerArea = [];
+      this.commonArea = [];
+
+      getModules(this.baseUrl).then((res) => {
         if (res.status === 200) {
-          let list = res.data.data || [];
-          this.gridsList = list
-            .filter(({ is_pc_nav }) => is_pc_nav === '1')
-            .sort((a, b) => a.pc_weight - b.pc_weight)
-            .map(({ id, icon, name, opentype, open_url }) => ({
-              id,
-              icon,
-              name,
-              opentype,
-              open_url,
-            }));
+          const moduleData = res.data.data.module;
+          console.log('九宫格列表', moduleData);
+          moduleData.forEach((item) => {
+            item.modules = this.simplifyArray(item.modules);
+            switch (item.type) {
+              case 1:
+                this.leftArea.push(item);
+                break;
+              case 2:
+                this.centerArea.push(item);
+                break;
+              case 1000:
+                this.commonArea.push(item);
+                break;
+            }
+          });
+          console.log('moduleData', this.leftArea, this.centerArea, this.commonArea);
         } else {
           this.$Message.error('九宫格列表获取失败');
         }
@@ -123,13 +250,11 @@ export default {
     },
     handleClick(id, opentype, open_url) {
       console.log('handleClick', id, opentype);
-
       if (opentype === '1') {
         getSyncGridUrl(id, this.baseUrl)
           .then((resp) => {
             console.log('1跳转', resp);
             if (resp.status == 200) {
-              console.log('resp.data.data', resp.data.data);
               window.location.href = resp.data.data;
             } else {
               this.$Message.info('发生错误');
