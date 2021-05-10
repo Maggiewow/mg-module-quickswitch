@@ -51,6 +51,20 @@
         <p class="module-name">{{ name }}</p>
       </div> -->
 
+      <div v-for="item of commonArea" :key="item.id" class="partItem">
+        <h2 class="col-title over_hide" :title="item.name">{{ item.name }}</h2>
+        <div class="card-list">
+          <div
+            class="per-card"
+            v-for="{ id, color_ico, name, opentype, open_url } in item.modules"
+            :key="id"
+            @click="handleClick(id, opentype, open_url)"
+          >
+            <img class="module-icon" :src="color_ico" :alt="name" />
+            <p class="module-name">{{ name }}</p>
+          </div>
+        </div>
+      </div>
       <div v-for="item of leftArea" :key="item.id" class="partItem">
         <h2 class="col-title over_hide" :title="item.name">{{ item.name }}</h2>
         <div class="card-list">
@@ -66,20 +80,6 @@
         </div>
       </div>
       <div v-for="item of centerArea" :key="item.id" class="partItem">
-        <h2 class="col-title over_hide" :title="item.name">{{ item.name }}</h2>
-        <div class="card-list">
-          <div
-            class="per-card"
-            v-for="{ id, color_ico, name, opentype, open_url } in item.modules"
-            :key="id"
-            @click="handleClick(id, opentype, open_url)"
-          >
-            <img class="module-icon" :src="color_ico" :alt="name" />
-            <p class="module-name">{{ name }}</p>
-          </div>
-        </div>
-      </div>
-      <div v-for="item of commonArea" :key="item.id" class="partItem">
         <h2 class="col-title over_hide" :title="item.name">{{ item.name }}</h2>
         <div class="card-list">
           <div
