@@ -98,9 +98,9 @@
 </template>
 
 <script>
-import './grids-jump.less';
-import { getModules, getSyncGridUrl } from '@/api/grids';
-import { debounce } from 'lodash';
+import './grids-jump.less'
+import { getModules, getSyncGridUrl } from '@/api/grids'
+import { debounce } from 'lodash'
 
 export default {
   name: 'grids-jump',
@@ -110,6 +110,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    // 1.0.37开始 不再需要传参
     env: {
       type: String,
       default: 'test', // dev | test | prod
@@ -117,6 +118,10 @@ export default {
     theme: {
       type: String,
       default: 'dark', // light dark
+    },
+    requestUrl: {
+      type: String,
+      default: 'https://shandianyun.iqilu.com',
     },
   },
   data() {
@@ -136,38 +141,56 @@ export default {
       centerArea: [],
       commonArea: [],
       isLight: false,
-    };
+    }
   },
   watch: {
-    env: {
-      handler(val) {
-        this.baseUrl = this.baseUrlObj[val];
-      },
-      immediate: true,
-    },
+    // env: {
+    //   handler(val) {
+    //     this.baseUrl = this.baseUrlObj[val];
+    //   },
+    //   immediate: true,
+    // },
     theme: {
       handler(str = 'dark') {
         if (str === 'light') {
           this.logoSrc =
-            'https://img12.iqilu.com/1/sucaiku/202104/25/ee017c1fe86344d3a32ecc03bfd00f9a.png';
+            'https://img12.iqilu.com/1/sucaiku/202104/25/ee017c1fe86344d3a32ecc03bfd00f9a.png'
         } else if (str === 'dark') {
           this.logoSrc =
-            'https://img12.iqilu.com/1/sucaiku/202102/03/db0b775182fb49f2af1557126470b0ce.png';
+            'https://img12.iqilu.com/1/sucaiku/202102/03/db0b775182fb49f2af1557126470b0ce.png'
         }
 
-        this.isLight = str === 'light';
+        this.isLight = str === 'light'
       },
       immediate: true,
     },
+    requestUrl: {
+      handler() {
+        this.baseUrl = this.requestUrl
+      },
+      immediate: true,
+    },
+  },
+  created() {
+    // 改进：不根据传入的环境env来判断（容易传错参数） 自己获取 window.location.origin
+    // 2022/12/26 接口域名不根据env判断 改为props传入
+    // let isProd = window.location.origin.includes('https://shandianyun');
+    // this.baseUrl = isProd ? this.baseUrlObj.prod : this.baseUrlObj.dev;
+    // console.log('当前接口请求地址', this.baseUrl);
   },
   mounted() {
     this.dbShow = debounce(this.mouseOver, 300, {
       leading: false, // 指定在延迟开始前调用
       trailing: true, // 指定在延迟结束后调用
-    });
-    this.baseUrl = this.baseUrlObj[this.env] || '';
-    console.log('当前接口请求地址', this.baseUrl);
-    this.getAllList();
+    })
+    // this.baseUrl = this.baseUrlObj[this.env] || '';
+    // requestUrl的备选方案
+    if (!this.baseUrl) {
+      let isProd = window.location.origin.includes('https://shandianyun')
+      this.baseUrl = isProd ? this.baseUrlObj.prod : this.baseUrlObj.dev
+    }
+
+    this.getAllList()
   },
   methods: {
     // getAllList1() {
@@ -199,95 +222,95 @@ export default {
           name,
           opentype,
           open_url,
-        }));
+        }))
 
-      return simple(list);
+      return simple(list)
     },
     getAllList() {
-      this.leftArea = [];
-      this.centerArea = [];
-      this.commonArea = [];
+      this.leftArea = []
+      this.centerArea = []
+      this.commonArea = []
 
       getModules(this.baseUrl).then((res) => {
         if (res.status === 200) {
-          const moduleData = res.data.data.module;
-          console.log('九宫格列表', moduleData);
+          const moduleData = res.data.data.module
+          console.log('九宫格列表', moduleData)
           moduleData.forEach((item) => {
-            item.modules = this.simplifyArray(item.modules);
+            item.modules = this.simplifyArray(item.modules)
             switch (item.type) {
               case 1:
-                this.leftArea.push(item);
-                break;
+                this.leftArea.push(item)
+                break
               case 2:
-                this.centerArea.push(item);
-                break;
+                this.centerArea.push(item)
+                break
               case 1000:
-                this.commonArea.push(item);
-                break;
+                this.commonArea.push(item)
+                break
             }
-          });
-          console.log('moduleData', this.leftArea, this.centerArea, this.commonArea);
+          })
+          console.log('moduleData', this.leftArea, this.centerArea, this.commonArea)
         } else {
-          this.$Message.error('九宫格列表获取失败');
+          this.$Message.error('九宫格列表获取失败')
         }
-      });
+      })
     },
     handleArrowClick() {
-      this.modalShow = !this.modalShow;
+      this.modalShow = !this.modalShow
     },
     mouseOver() {
-      if (this.collapsed) return;
+      if (this.collapsed) return
 
-      this.modalShow = true;
+      this.modalShow = true
     },
     mouseLeave() {
-      if (this.collapsed) return;
+      if (this.collapsed) return
 
-      this.modalShow = false;
+      this.modalShow = false
     },
     goBackLogin() {
-      this.$emit('on-back');
+      this.$emit('on-back')
     },
     handleClick(id, opentype, open_url) {
-      console.log('handleClick', id, opentype);
+      console.log('handleClick', id, opentype)
       if (opentype === '1') {
         getSyncGridUrl(id, this.baseUrl)
           .then((resp) => {
-            console.log('1跳转', resp);
+            console.log('1跳转', resp)
             if (resp.status == 200) {
-              window.location.href = resp.data.data;
+              window.location.href = resp.data.data
             } else {
-              this.$Message.info('发生错误');
+              this.$Message.info('发生错误')
             }
           })
           .catch((resp) => {
-            console.log(resp);
-          });
+            console.log(resp)
+          })
       } else if (opentype === '2') {
-        console.log('2跳转', open_url);
-        window.location.href = open_url;
+        console.log('2跳转', open_url)
+        window.location.href = open_url
       } else if (opentype === '3') {
-        console.log('3跳转', '/selfshow');
+        console.log('3跳转', '/selfshow')
         this.$router.push({
           path: '/selfshow',
-        });
+        })
       } else if (opentype === '4') {
         getSyncGridUrl(id, this.baseUrl)
           .then((resp) => {
-            console.log('4跳转', resp);
+            console.log('4跳转', resp)
             if (resp.status == 200) {
-              console.log('resp.data.data', resp.data.data);
+              console.log('resp.data.data', resp.data.data)
               // window.location.href = resp.data.data;
-              window.open(resp.data.data, '_blank');
+              window.open(resp.data.data, '_blank')
             } else {
-              this.$Message.info('发生错误');
+              this.$Message.info('发生错误')
             }
           })
           .catch((resp) => {
-            console.log(resp);
-          });
+            console.log(resp)
+          })
       }
     },
   },
-};
+}
 </script>
